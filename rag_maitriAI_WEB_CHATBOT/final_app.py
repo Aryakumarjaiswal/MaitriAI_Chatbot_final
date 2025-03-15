@@ -7,7 +7,8 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain_community.vectorstores import Chroma
+#from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
@@ -36,7 +37,7 @@ splits = text_splitter.split_documents(docs)
 
 gemini_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 try:
-    vectorstore = Chroma.from_documents(documents=splits, embedding=gemini_embeddings)
+    vectorstore = FAISS.from_documents(documents=splits, embedding=gemini_embeddings)
     print("Vectorstore successfully created.")
 except ValueError as e:
     print("Error details:", e)  # Add this line to print the error details
@@ -189,4 +190,3 @@ def main():
 
 
 main()
-
