@@ -1,0 +1,8 @@
+python-dotenv 
+langchain-core 
+langchain-community 
+langchain-google-genai 
+langchain-text-splitters 
+streamlit 
+chromadb 
+pypdf
